@@ -2,6 +2,7 @@ import { Suspense, useState } from "react";
 import CardDiv from "./components/cardbox/CardDiv"
 import Hero from "./components/Hero"
 import Nav from "./components/Nav"
+import Footer from "./components/Footer";
 
 
 
@@ -24,6 +25,7 @@ function App() {
       <Suspense fallback={<div>Loading...........</div>}>
       <CardDiv technologyPromise={technologyPromise}/>
       </Suspense>
+      <Footer />
       </div>
     </>
   )

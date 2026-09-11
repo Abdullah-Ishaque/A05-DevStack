@@ -4,18 +4,22 @@ import Cards from './Cards';
 
 interface AvailableCardsProps {
     technologise: ItechnologyType[],
-    selectedCards : ItechnologyType[],
-    setSelectedCards : Dispatch<SetStateAction<ItechnologyType[]>>
+    selectedCards: ItechnologyType[],
+    setSelectedCards: Dispatch<SetStateAction<ItechnologyType[]>>
 }
 
-const AvailableCards = ({ technologise , selectedCards , setSelectedCards}: AvailableCardsProps) => {
+const AvailableCards = ({ technologise, selectedCards, setSelectedCards}: AvailableCardsProps) => {
     return (
         <div className='grid grid-cols-3 gap-4 mt-24'>
             {
                 technologise.map((technology: ItechnologyType, id: number) => {
-                    return(
-                        <Cards key={id} technology={technology} selectedCards={selectedCards} setSelectedCards={setSelectedCards}/>
-                        
+                    const isAlreadySelected = selectedCards.some(
+                        (item) => item.name === technology.name
+                    );
+                    return (
+
+                        <Cards key={id} technology={technology} selectedCards={selectedCards} setSelectedCards={setSelectedCards} isAlreadySelected={isAlreadySelected}/>
+
                     )
                 })
             }

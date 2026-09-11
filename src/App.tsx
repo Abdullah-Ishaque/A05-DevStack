@@ -18,7 +18,7 @@ function App() {
 
   return (
     <>
-    <div className=" bg-white w-full min-h-screen p-3 ">
+    <div className="bg-white overflow-hidden">
       <Nav/>
       <Hero/>
       <Suspense fallback={<div>Loading...........</div>}>

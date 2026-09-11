@@ -2,6 +2,7 @@ import React, { use, useState } from 'react';
 import type { ItechnologyType } from '../techType/Type';
 import AvailableCards from './AvailableCards';
 import Selectedcards from './Selectedcards';
+import { toast } from 'react-toastify';
 
 interface CardDivProps {
     technologyPromise: Promise<ItechnologyType[]>
@@ -11,6 +12,12 @@ const CardDiv = ({ technologyPromise }: CardDivProps) => {
     const technologise = use(technologyPromise);
     
     const [selectedCards , setSelectedCards] = useState<ItechnologyType[]>([])
+    const [isSelected, setIsSelected] = useState(false)
+
+    const handleRemoveAll = () => {
+        toast.error("Removed all technologies from stack")
+        setSelectedCards([])
+    }
 
 
     return (
@@ -21,11 +28,12 @@ const CardDiv = ({ technologyPromise }: CardDivProps) => {
                     <h2 className='text-gray-500 pt-4 font-bold text-1xl'>Pick one technology per category to build your ideal stack.</h2>
                 </div>
                 <div>
-                    <AvailableCards technologise={technologise} selectedCards={selectedCards} setSelectedCards={setSelectedCards}/>
+                    <AvailableCards technologise={technologise} selectedCards={selectedCards} setSelectedCards={setSelectedCards} />
                 </div>
             </div>
             <div className='pt-50'>
-                <Selectedcards selectedCards={selectedCards} setSelectedCards={setSelectedCards}/>
+                <Selectedcards selectedCards={selectedCards} setSelectedCards={setSelectedCards} isSelected={isSelected} setIsSelected={setIsSelected}/>
+                <button onClick={() => handleRemoveAll()} className="btn w-full mt-4 border border-red-600 rounded-lg font-semibold text-lg text-red-600">Remove all</button>
             </div>
         </div>
     );

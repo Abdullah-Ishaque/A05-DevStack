@@ -2,19 +2,25 @@ import React, { useState, type Dispatch, type SetStateAction } from 'react';
 import type { ItechnologyType } from '../techType/Type';
 import { FaStar } from "react-icons/fa";
 import { TiTick } from 'react-icons/ti';
+import { toast } from 'react-toastify';
 
 interface cardsProps {
     technology: ItechnologyType,
     selectedCards: ItechnologyType[],
     setSelectedCards: Dispatch<SetStateAction<ItechnologyType[]>>
+    isAlreadySelected : boolean
 }
 
 
-const Cards = ({ technology, selectedCards, setSelectedCards }: cardsProps) => {
-    const [isSelected , setIsSelected] = useState(false)
-    const handleSelect = () => {
+const Cards = ({ technology, selectedCards, setSelectedCards,isAlreadySelected }: cardsProps) => {
+
+    
+    const handleSelect = (technology : ItechnologyType) => {
+        if(isAlreadySelected) return;
+        toast.success(`${technology.name} is added to stack`)
         setSelectedCards([...selectedCards, technology]);
-        setIsSelected(true);
+        
+        
     }
     return (
         <div>
@@ -37,7 +43,7 @@ const Cards = ({ technology, selectedCards, setSelectedCards }: cardsProps) => {
                         <div className='text-center p-1'>{technology.difficulty}</div>
                         <div className='text-center p-1'><p className='flex gap-1 items-center'><FaStar />{technology.rating}</p></div>
                     </div>
-                    <button onClick={() => handleSelect()} disabled={isSelected}  className={`${isSelected? "btn btn-disabled text-pink-500" :"btn btn-active bg-gray-900 text-white"} rounded-lg`}>{isSelected? (<span className='flex items-center'><TiTick />Added to stack</span>):("Add to Stack")}</button>
+                    <button onClick={() => handleSelect(technology)} disabled={isAlreadySelected} className={`${isAlreadySelected ? "btn btn-disabled text-pink-500" : "btn btn-active bg-gray-900 text-white"} rounded-lg`}>{isAlreadySelected ? (<span className='flex items-center'><TiTick />Added to stack</span>) : ("Add to Stack")}</button>
                 </div>
             </div>
         </div>

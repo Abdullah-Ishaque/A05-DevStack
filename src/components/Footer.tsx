@@ -24,7 +24,26 @@ const Footer = () => {
                     <li>Projects</li>
                 </ul>
             </div>
-            
+            <div>
+                <h2>COMPANY</h2>
+                <ul className='flex flex-col pt-5'>
+                    <li>About</li>
+                    <li>Contact</li>
+                    <li>Careers</li>
+                </ul>
+            </div>
+            <div>
+                <h2>LEGAL</h2>
+                <ul className='flex flex-col pt-5'>
+                    <li>Privacy Policy</li>
+                    <li>Terms of Service</li>
+                </ul>
+
+                <ul className='flex gap-4 pt-30 pl-20'>
+                    <li>Privacy</li>
+                    <li>Terms</li>
+                </ul>
+            </div>
         </div>
     );
 };

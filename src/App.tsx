@@ -22,7 +22,7 @@ function App() {
     <div className="bg-white overflow-hidden">
       <Nav/>
       <Hero/>
-      <Suspense fallback={<div>Loading...........</div>}>
+      <Suspense fallback={<div className="Container text-center">Loading...........</div>}>
       <CardDiv technologyPromise={technologyPromise}/>
       </Suspense>
       <Footer />

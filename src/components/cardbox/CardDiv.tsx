@@ -1,4 +1,4 @@
-import React, { use, useState } from 'react';
+import { use, useState } from 'react';
 import type { ItechnologyType } from '../techType/Type';
 import AvailableCards from './AvailableCards';
 import Selectedcards from './Selectedcards';
@@ -33,7 +33,7 @@ const CardDiv = ({ technologyPromise }: CardDivProps) => {
             </div>
             <div className='pt-50'>
                 <Selectedcards selectedCards={selectedCards} setSelectedCards={setSelectedCards} isSelected={isSelected} setIsSelected={setIsSelected}/>
-                <button onClick={() => handleRemoveAll()} className="btn w-full mt-4 border border-red-600 rounded-lg font-semibold text-lg text-red-600">Remove all</button>
+                {(selectedCards.length === 0)? (""): (<button onClick={() => handleRemoveAll()} className="btn w-full mt-4 border border-red-600 rounded-lg font-semibold text-lg text-red-600">Remove all</button>)}
             </div>
         </div>
     );

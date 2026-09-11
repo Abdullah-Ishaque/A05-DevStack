@@ -16,6 +16,14 @@ const Footer = () => {
                 </ul>
                 <p className='pt-17'>© 2026 Dev Stack. All rights reserved.</p>
             </div>
+            <div>
+                <h2>PRODUCT</h2>
+                <ul className='flex flex-col pt-5'>
+                    <li>Home</li>
+                    <li>Technologies</li>
+                    <li>Projects</li>
+                </ul>
+            </div>
             
         </div>
     );

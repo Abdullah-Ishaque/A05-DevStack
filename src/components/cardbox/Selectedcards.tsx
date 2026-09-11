@@ -1,9 +1,23 @@
-import React from 'react';
+import React, { type Dispatch, type SetStateAction } from 'react';
+import type { ItechnologyType } from '../techType/Type';
 
-const Selectedcards = () => {
+interface selectedCardsProps{
+    selectedCards : ItechnologyType[],
+    setSelectedCards : Dispatch<SetStateAction<ItechnologyType[]>>
+}
+
+const Selectedcards = ({selectedCards , setSelectedCards} : selectedCardsProps) => {
     return (
         <div>
-            <h1>Hsfjlaksjfaslkfjaslkfjsdlfkj</h1>
+            {
+                selectedCards.map((selectedCard) => {
+                    return(
+                        <div>
+                            <h2>{selectedCard.name}</h2>
+                        </div>
+                    )
+                })
+            }
         </div>
     );
 };

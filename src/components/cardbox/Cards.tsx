@@ -1,19 +1,28 @@
-import React from 'react';
+import React, { useState, type Dispatch, type SetStateAction } from 'react';
 import type { ItechnologyType } from '../techType/Type';
 import { FaStar } from "react-icons/fa";
+import { TiTick } from 'react-icons/ti';
 
 interface cardsProps {
-    technology: ItechnologyType
+    technology: ItechnologyType,
+    selectedCards: ItechnologyType[],
+    setSelectedCards: Dispatch<SetStateAction<ItechnologyType[]>>
 }
 
-const Cards = ({ technology }: cardsProps) => {
+
+const Cards = ({ technology, selectedCards, setSelectedCards }: cardsProps) => {
+    const [isSelected , setIsSelected] = useState(false)
+    const handleSelect = () => {
+        setSelectedCards([...selectedCards, technology]);
+        setIsSelected(true);
+    }
     return (
         <div>
             <div className="card bg-base-100 w-auto h-auto shadow-sm">
                 <div className="card-body">
                     <div className='flex justify-between'>
                         <div>
-                            <img src={technology.icon} alt="" className='h-10 w-10'/>
+                            <img src={technology.icon} alt="" className='h-10 w-10' />
                         </div>
                         <div className='border-2 w-20 h-2 text-center pb-6 rounded-2xl'>
                             <h1 className='text-sm font-semibold'>{technology.badge}</h1>
@@ -28,7 +37,7 @@ const Cards = ({ technology }: cardsProps) => {
                         <div className='text-center p-1'>{technology.difficulty}</div>
                         <div className='text-center p-1'><p className='flex gap-1 items-center'><FaStar />{technology.rating}</p></div>
                     </div>
-                    <button className='btn btn-active bg-gray-900 text-white rounded-lg'>Add to Stack</button>
+                    <button onClick={() => handleSelect()} disabled={isSelected}  className={`${isSelected? "btn btn-disabled text-pink-500" :"btn btn-active bg-gray-900 text-white"} rounded-lg`}>{isSelected? (<span className='flex items-center'><TiTick />Added to stack</span>):("Add to Stack")}</button>
                 </div>
             </div>
         </div>

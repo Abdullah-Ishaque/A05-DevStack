@@ -1,4 +1,4 @@
-import React, { use } from 'react';
+import React, { use, useState } from 'react';
 import type { ItechnologyType } from '../techType/Type';
 import AvailableCards from './AvailableCards';
 import Selectedcards from './Selectedcards';
@@ -10,6 +10,9 @@ interface CardDivProps {
 const CardDiv = ({ technologyPromise }: CardDivProps) => {
     const technologise = use(technologyPromise);
     
+    const [selectedCards , setSelectedCards] = useState<ItechnologyType[]>([])
+
+
     return (
         <div className='Container grid grid-cols-4'>
             <div className='grid col-span-3'>
@@ -18,11 +21,11 @@ const CardDiv = ({ technologyPromise }: CardDivProps) => {
                     <h2 className='text-gray-500 pt-4 font-bold text-1xl'>Pick one technology per category to build your ideal stack.</h2>
                 </div>
                 <div>
-                    <AvailableCards technologise={technologise}/>
+                    <AvailableCards technologise={technologise} selectedCards={selectedCards} setSelectedCards={setSelectedCards}/>
                 </div>
             </div>
-            <div>
-                <Selectedcards/>
+            <div className='pt-50'>
+                <Selectedcards selectedCards={selectedCards} setSelectedCards={setSelectedCards}/>
             </div>
         </div>
     );
